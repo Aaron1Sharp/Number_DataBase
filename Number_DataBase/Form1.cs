@@ -6,28 +6,33 @@ namespace Number_DataBase
 {
     public partial class Form1 : Form
     {
+
+
         public Form1()
         {
             InitializeComponent();
         }
 
         private void button_Enter_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Getting Connection ...");
+        {    
             MySqlConnection _connection = DataBaseUtils.GetMySqlConnection();
 
             try
             {
-                Console.WriteLine("Openning Connection ...");
+                Debug_text.Text = "Getting Connection ..." 
+                           + "\r\n Openning Connection ...";
 
                 _connection.Open();
-                MessageBox.Show("Connection successful!");
-                Console.WriteLine("Connection successful!");
+
+                Debug_text.Text = "Getting Connection ..."
+                            + "\r\nOpenning Connection ..." 
+                            + "\r\nConnection successful! ";
             }
             catch 
             {
-                MessageBox.Show("Error");
-                Console.WriteLine("Error: ");
+                Debug_text.Text = "Getting Connection ..."
+                            + "\r\nOpenning Connection ..."
+                            + "\r\nError ";
             }
         }
     }
