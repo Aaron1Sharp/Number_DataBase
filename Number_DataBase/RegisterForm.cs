@@ -1,12 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Number_DataBase
@@ -22,13 +17,12 @@ namespace Number_DataBase
             Show_Prompting("Enter password", PassField);
         }
 
-        private void Show_Prompting(string _fieldspace, TextBox textBox)
+        public void Show_Prompting(string _fieldspace, TextBox textBox)
         {
             textBox.Text = _fieldspace;
             textBox.ForeColor = Color.Gray;
         }
-
-        private void FieldEnterBC(string _fieldspace,TextBox textBox)
+        public void FieldEnterBC(string _fieldspace, TextBox textBox)
         {
             if (textBox.Text == _fieldspace)
             {
@@ -36,7 +30,7 @@ namespace Number_DataBase
                 textBox.ForeColor = Color.Black;
             }
         }
-        private void FieldLeaveGC(string _fieldspace, TextBox textBox)
+        public void FieldLeaveGC(string _fieldspace, TextBox textBox)
         {
             if (textBox.Text == "")
             {
@@ -52,32 +46,48 @@ namespace Number_DataBase
             string nameUser = NameField.Text;
             string surnameUser = SurnameField.Text;
 
+
             DataTable dataTable = new DataTable();
             MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
             MySqlConnection _connection = DataBaseUtils.GetMySqlConnection();
-
+            //OPEN CONNECTION
             try
             {
-                Debug_text.Text = ("Connection Getting...");
+                Debug_text.Text = "Connection Getting...";
                 _connection.Open();
-                Debug_text.Text += ("\r\nConnection Open...");
+                Debug_text.Text += "\r\nConnection Open...";
             }
             catch 
             {
-                Debug_text.Text = ("Connection Close");
+                Debug_text.Text += "\r\nConnection Close";
             }
 
-            MySqlCommand sqlCommand = new MySqlCommand("SELECT * FROM `users` WHERE `login` = @uL AND `pass`  = @uP", _connection);
-            sqlCommand.Parameters.Add("@uL", MySqlDbType.VarChar).Value = loginUser;
-            sqlCommand.Parameters.Add("@uP", MySqlDbType.VarChar).Value = passUser;
+            if (NameField.Text == "Enter name" || SurnameField.Text == "Enter surname" || loginField.Text == "Enter login" || PassField.Text == "Enter password")
+            {
+                Debug_text.Text += "\r\nAccount was not created(Fill in all the fields)...";
+                return;
+            }
+            else
+            {
+                Debug_text.Text += "\r\nAccount has been created.";
+            }
+            if (IsUserExists())
+                return;
+
+            Debug_text.Text += "\r\nRegistration completed.";
+            MySqlCommand sqlCommand = new MySqlCommand("INSERT INTO `users` (`id`, `login`, `pass`, `name`, `surname`) VALUES (NULL, @uLogin, @uPassword, @uName, @uSurname);", _connection);
+
+            sqlCommand.Parameters.Add("@uLogin",        MySqlDbType.VarChar).Value = loginUser;
+            sqlCommand.Parameters.Add("@uPassword", MySqlDbType.VarChar).Value = passUser;
+            sqlCommand.Parameters.Add("@uName",       MySqlDbType.VarChar).Value = nameUser;
+            sqlCommand.Parameters.Add("@uSurname",  MySqlDbType.VarChar).Value = surnameUser;
 
             mySqlDataAdapter.SelectCommand = sqlCommand;
             mySqlDataAdapter.Fill(dataTable);
 
-            if (dataTable.Rows.Count > 0)
-                Debug_text.Text += "\r\nuser is registered! change login or password";
-            else
-                Debug_text.Text += "\r\nuser is NOT registered";
+            //CLOSE CONNECTION
+            _connection.Close();
+            Debug_text.Text += "\r\nConnection Close";
         }
 
         #region Prompting
@@ -93,5 +103,36 @@ namespace Number_DataBase
         private void PassField_Enter(object sender, EventArgs e) => FieldEnterBC("Enter password", PassField);
         private void PassField_Leave(object sender, EventArgs e) => FieldLeaveGC("Enter password", PassField);
         #endregion
+
+        public bool IsUserExists()
+        {
+            DataTable dataTable = new DataTable();
+            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
+            MySqlConnection _connection = DataBaseUtils.GetMySqlConnection();
+
+            MySqlCommand sqlCommand = new MySqlCommand("SELECT * FROM `users` WHERE `login` = @uL", _connection);
+            sqlCommand.Parameters.Add("@uL", MySqlDbType.VarChar).Value = loginField.Text;
+
+            mySqlDataAdapter.SelectCommand = sqlCommand;
+            mySqlDataAdapter.Fill(dataTable);
+
+            if (dataTable.Rows.Count > 0)
+            {
+                Debug_text.Text += "\r\nlogin busy";
+                return true;
+            }
+            else
+            {
+                //Debug_text.Text += "\r\nlogin free";
+                return false;
+            }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Login_window _login_Window = new Login_window();
+            _login_Window.Show();
+        }
     }
 }

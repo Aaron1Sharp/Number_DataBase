@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Relational;
 
 namespace Number_DataBase
 {
-    public partial class login_window : Form
+    public partial class Login_window : Form
     {
-        public login_window()
+        RegisterForm registerForm = new RegisterForm();
+
+        public Login_window()
         {
             InitializeComponent();
+            registerForm.Show_Prompting("enter login", loginField);
+            registerForm.Show_Prompting("enter password", PassField);
         }
-
         private void button_Enter_Click(object sender, EventArgs e)
         {
             string loginUser = loginField.Text;
@@ -42,16 +45,30 @@ namespace Number_DataBase
             mySqlDataAdapter.Fill(dataTable);
 
             if (dataTable.Rows.Count > 0)
-                Debug_text.Text += "\r\nuser is registered";           
+            {
+                Hide();
+                MainForm mainForm = new MainForm();
+                mainForm.Show();
+            }      
             else
                 Debug_text.Text += "\r\nuser is NOT registered";
-            
-
+        }
+        private void label3_Click(object sender, EventArgs e)
+        {
+            Hide();
+            RegisterForm registerForm = new RegisterForm();
+            registerForm.Show();
         }
 
-        private void Debug_text_TextChanged(object sender, EventArgs e)
+        private void loginField_TextChanged(object sender, EventArgs e)
         {
 
         }
+        private void loginField_Enter(object sender, EventArgs e) => registerForm.FieldEnterBC("enter login", loginField);
+        private void loginField_Leave(object sender, EventArgs e) => registerForm.FieldLeaveGC("enter login", loginField);
+        
+        private void PassField_Enter(object sender, EventArgs e) => registerForm.FieldEnterBC("enter password", PassField);
+        private void PassField_Leave(object sender, EventArgs e) => registerForm.FieldLeaveGC("enter password", PassField);
+
     }
 }

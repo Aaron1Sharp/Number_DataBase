@@ -1,6 +1,6 @@
 ﻿namespace Number_DataBase
 {
-    partial class login_window
+    partial class Login_window
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.Debug_text = new System.Windows.Forms.TextBox();
             this.button_Enter = new System.Windows.Forms.Button();
             this.PassField = new System.Windows.Forms.TextBox();
@@ -51,6 +52,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(181)))), ((int)(((byte)(237)))));
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.Debug_text);
             this.panel2.Controls.Add(this.button_Enter);
             this.panel2.Controls.Add(this.PassField);
@@ -60,8 +62,19 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 62);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(731, 179);
+            this.panel2.Size = new System.Drawing.Size(731, 215);
             this.panel2.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(559, 177);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(166, 29);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "no account yet";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // Debug_text
             // 
@@ -71,7 +84,6 @@
             this.Debug_text.ReadOnly = true;
             this.Debug_text.Size = new System.Drawing.Size(223, 165);
             this.Debug_text.TabIndex = 6;
-            this.Debug_text.TextChanged += new System.EventHandler(this.Debug_text_TextChanged);
             // 
             // button_Enter
             // 
@@ -91,6 +103,8 @@
             this.PassField.Name = "PassField";
             this.PassField.Size = new System.Drawing.Size(318, 44);
             this.PassField.TabIndex = 4;
+            this.PassField.Enter += new System.EventHandler(this.PassField_Enter);
+            this.PassField.Leave += new System.EventHandler(this.PassField_Leave);
             // 
             // loginField
             // 
@@ -99,6 +113,9 @@
             this.loginField.Name = "loginField";
             this.loginField.Size = new System.Drawing.Size(318, 44);
             this.loginField.TabIndex = 3;
+            this.loginField.TextChanged += new System.EventHandler(this.loginField_TextChanged);
+            this.loginField.Enter += new System.EventHandler(this.loginField_Enter);
+            this.loginField.Leave += new System.EventHandler(this.loginField_Leave);
             // 
             // label2
             // 
@@ -120,15 +137,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Login";
             // 
-            // login_window
+            // Login_window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 241);
+            this.ClientSize = new System.Drawing.Size(731, 277);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "login_window";
+            this.Name = "Login_window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.panel2.ResumeLayout(false);
@@ -147,6 +164,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_Enter;
         private System.Windows.Forms.TextBox Debug_text;
+        private System.Windows.Forms.Label label3;
     }
 }
 

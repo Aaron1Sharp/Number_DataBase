@@ -35,12 +35,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.SurnameField = new System.Windows.Forms.TextBox();
+            this.NameField = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.NameField = new System.Windows.Forms.TextBox();
-            this.SurnameField = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -124,9 +125,50 @@
             this.panel2.Size = new System.Drawing.Size(737, 282);
             this.panel2.TabIndex = 3;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(10, 163);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(147, 37);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Surname";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(12, 113);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 37);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Name";
+            // 
+            // SurnameField
+            // 
+            this.SurnameField.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SurnameField.Location = new System.Drawing.Point(178, 156);
+            this.SurnameField.Name = "SurnameField";
+            this.SurnameField.Size = new System.Drawing.Size(318, 44);
+            this.SurnameField.TabIndex = 8;
+            this.SurnameField.Enter += new System.EventHandler(this.SurnameField_Enter);
+            this.SurnameField.Leave += new System.EventHandler(this.SurnameField_Leave);
+            // 
+            // NameField
+            // 
+            this.NameField.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NameField.Location = new System.Drawing.Point(178, 106);
+            this.NameField.Name = "NameField";
+            this.NameField.Size = new System.Drawing.Size(318, 44);
+            this.NameField.TabIndex = 7;
+            this.NameField.Enter += new System.EventHandler(this.NameField_Enter);
+            this.NameField.Leave += new System.EventHandler(this.NameField_Leave);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(162)))), ((int)(((byte)(214)))));
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -144,45 +186,16 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Registration";
             // 
-            // NameField
+            // label6
             // 
-            this.NameField.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameField.Location = new System.Drawing.Point(178, 106);
-            this.NameField.Name = "NameField";
-            this.NameField.Size = new System.Drawing.Size(318, 44);
-            this.NameField.TabIndex = 7;
-            this.NameField.Enter += new System.EventHandler(this.NameField_Enter);
-            this.NameField.Leave += new System.EventHandler(this.NameField_Leave);
-            // 
-            // SurnameField
-            // 
-            this.SurnameField.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SurnameField.Location = new System.Drawing.Point(178, 156);
-            this.SurnameField.Name = "SurnameField";
-            this.SurnameField.Size = new System.Drawing.Size(318, 44);
-            this.SurnameField.TabIndex = 8;
-            this.SurnameField.Enter += new System.EventHandler(this.SurnameField_Enter);
-            this.SurnameField.Leave += new System.EventHandler(this.SurnameField_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(12, 113);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 37);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Name";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(10, 163);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(147, 37);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Surname";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(653, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 29);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "log in";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // RegisterForm
             // 
@@ -217,5 +230,6 @@
         private System.Windows.Forms.TextBox NameField;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
     }
 }

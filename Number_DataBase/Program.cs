@@ -16,7 +16,7 @@ namespace Number_DataBase
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RegisterForm());
+            Application.Run(new Login_window());
         }
     }
 }
