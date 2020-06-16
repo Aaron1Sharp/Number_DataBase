@@ -13,6 +13,7 @@ namespace Number_DataBase
         public Login_window()
         {
             InitializeComponent();
+
             registerForm.Show_Prompting("enter login", loginField);
             registerForm.Show_Prompting("enter password", PassField);
         }
@@ -53,6 +54,7 @@ namespace Number_DataBase
             else
                 Debug_text.Text += "\r\nuser is NOT registered";
         }
+
         private void label3_Click(object sender, EventArgs e)
         {
             Hide();
@@ -60,10 +62,6 @@ namespace Number_DataBase
             registerForm.Show();
         }
 
-        private void loginField_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void loginField_Enter(object sender, EventArgs e) => registerForm.FieldEnterBC("enter login", loginField);
         private void loginField_Leave(object sender, EventArgs e) => registerForm.FieldLeaveGC("enter login", loginField);
         
