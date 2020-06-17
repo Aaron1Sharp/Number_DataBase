@@ -17,13 +17,15 @@ namespace Number_DataBase
             Show_Prompting("Enter login", loginField);
             Show_Prompting("Enter password", PassField);
         }
-
+         
         private void button_Register_Click(object sender, EventArgs e)
         {
             string loginUser = loginField.Text;
             string passUser = PassField.Text;
             string nameUser = NameField.Text;
             string surnameUser = SurnameField.Text;
+            
+           
 
             DataTable dataTable = new DataTable();
             MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
@@ -56,21 +58,24 @@ namespace Number_DataBase
 
             Debug_text.Text += "\r\nRegistration completed.";
 
+            
             MySqlCommand sqlCommand = new MySqlCommand("INSERT INTO `users` (`id`, `login`, `pass`, `name`, `surname`) VALUES (NULL, @uLogin, @uPassword, @uName, @uSurname);", _connection);
 
             sqlCommand.Parameters.Add("@uLogin",        MySqlDbType.VarChar).Value = loginUser;
             sqlCommand.Parameters.Add("@uPassword", MySqlDbType.VarChar).Value = passUser;
             sqlCommand.Parameters.Add("@uName",       MySqlDbType.VarChar).Value = nameUser;
             sqlCommand.Parameters.Add("@uSurname",  MySqlDbType.VarChar).Value = surnameUser;
+            
 
             mySqlDataAdapter.SelectCommand = sqlCommand;
             mySqlDataAdapter.Fill(dataTable);
-
+           
+            
             //CLOSE CONNECTION
             _connection.Close();
             Debug_text.Text += "\r\nConnection Close";
         }
-
+        
         private void label6_Click(object sender, EventArgs e)
         {
             Hide();
