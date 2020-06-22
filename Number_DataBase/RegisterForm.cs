@@ -20,13 +20,12 @@ namespace Number_DataBase
          
         private void button_Register_Click(object sender, EventArgs e)
         {
+
             string loginUser = loginField.Text;
             string passUser = PassField.Text;
             string nameUser = NameField.Text;
             string surnameUser = SurnameField.Text;
             
-           
-
             DataTable dataTable = new DataTable();
             MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
             MySqlConnection _connection = DataBaseUtils.GetMySqlConnection();
